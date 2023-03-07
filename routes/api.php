@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\ListingController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+//
 
 // Public routes
 Route::get("/products", [ProductController::class, "index"]);
 Route::get("/products/{product}", [ProductController::class, "show"]);
 Route::get("/products/search/{name}", [ProductController::class, "search"]);
+Route::post("/register", [AuthController::class, "register"]);
 
 // Protected routes
 Route::group(["middleware" => ["auth:sanctum"]], function () {
