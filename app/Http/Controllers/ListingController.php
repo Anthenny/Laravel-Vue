@@ -21,9 +21,11 @@ class ListingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        Listing::create($request->all());
+        return response()->json(['status' => 'succes', 'message' => 'listing is succesvol aangemaakt', 'request' => $request->all()]);
+
     }
 
     /**
@@ -39,8 +41,8 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        return inertia('Listing/Index', [
-            'listings' => $listing
+        return inertia('Listing/Show', [
+            'listing' => $listing
         ]);
     }
 
